@@ -7,9 +7,8 @@
   width: auto;
   height: auto;
   overflow: hidden;
-  /* Adjusting margins to flush left - added some padding for alignment */
-  margin: -31px; /* Keep vertical margin if desired for vertical positioning */
-  margin-left: 32px; /* Align to the left, matching typical text padding */
+  margin: -31px; /* Keep vertical margin */
+  margin-left: -7px; /* Reverted to original value for centering */
   border: 3px solid #f4c2c2; 
   border-radius: 50% !important;
   box-shadow: 0 4px 16px rgba(244, 194, 194, 0.2);
@@ -39,14 +38,12 @@
 
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 .social {
-  margin: 0 auto; /* This centers the block, but text-align on parent matters for icons */
+  margin: 0 auto;
   width: auto;
-  text-align: left; /* Explicitly align contents to the left */
-  /* padding: 10px; */
+  text-align: left; /* Keep social icons left-flushed unless specified */
 }
 
 .icon-btn {
-  /* margin-left: auto; Removed as it was pushing to the right */
   width: 50px;
   height: 50px;
   border: 0;
@@ -56,8 +53,8 @@
   line-height: 70px;
   border-radius: 45px;
   display: inline-block;
-  margin: 4px; /* Keep existing margin */
-  margin-left: 32px; /* Add some left margin to align with text if desired */
+  margin: 4px;
+  margin-left: 32px; /* Keep this for left alignment of social icons */
 }
 
 .github {
@@ -178,7 +175,6 @@ blockquote * {
 }
 
 .text-center {
-  /* Keep this class, but ensure it's not applied to nav elements if you want left-flush */
   text-align: center;
 }
 
@@ -233,11 +229,11 @@ ul.side-nav.fixed a {
   color: #b8a9c9;
   display: block;
   line-height: 100%;
-  padding: 16px 0 16px 32px; /* Keeping original left padding for flush left */
+  padding: 16px 0 16px 32px; /* Keep original left padding for left-flush links */
   font-weight: 500;
   transition: all 0.3s ease;
   font-family: 'Inter', sans-serif;
-  text-align: left; /* Changed from center to left */
+  text-align: left; /* Keep left-flushed for navigation links */
 }
 
 ul.side-nav.fixed a:hover {
@@ -257,16 +253,15 @@ ul.side-nav.fixed li.logo {
   box-sizing: content-box;
   min-height: 90px;
   padding: 30px 30px 40px;
-  text-align: left; /* Changed from center to left */
+  text-align: center; /* Reverted to center for the logo area */
 }
 
 ul.side-nav.fixed li.logo a {
   font-weight: 400;
   line-height: 100%;
   color: #5a5a5a;
-  text-align: left; /* Changed from center to left */
-  padding: 0; /* Keep current padding or adjust for left alignment */
-  padding-left: 32px; /* Add padding to align with links if needed */
+  text-align: center; /* Reverted to center for logo text */
+  padding: 0; /* Reverted to original padding for logo text */
 }
 
 ul.table-of-contents li:not(.logo) a.active, 
@@ -285,8 +280,7 @@ li.logo span {
   font-size: 13px;
   color: #8a8a8a;
   font-family: 'Caveat', cursive;
-  text-align: left; /* Changed from center to left */
-  padding-left: 32px; /* Add padding to align with links if needed */
+  text-align: center; /* Reverted to center for subtitle text */
 }
 
 .brand-logo h1 {
@@ -295,8 +289,7 @@ li.logo span {
   margin: inherit;
   font-weight: inherit;
   font-family: 'Caveat', cursive;
-  text-align: left; /* Changed from center to left */
-  padding-left: 32px; /* Add padding to align with links if needed */
+  text-align: center; /* Reverted to center for brand logo H1 */
 }
 
 .container {
@@ -623,8 +616,8 @@ small {
     line-height: 100%;
     padding: 0;
     width: 100%;
-    text-align: left; /* Changed from center to left */
-    padding-left: 32px; /* Added padding to align with other elements */
+    text-align: left; /* Keep left-flushed for mobile nav links */
+    padding-left: 32px; /* Keep padding for alignment */
   }
   
   nav {
@@ -660,10 +653,10 @@ small {
     display: block;
     height: 100%;
     padding-top: 20px;
-    text-align: left; /* Changed from center to left */
+    text-align: center; /* Reverted to center for mobile logo area */
     width: 100%;
     position: absolute;
-    padding-left: 32px; /* Added padding to align with other elements */
+    padding-left: 0; /* Removed padding for centering */
   }
   
   .name-title>span, .name-title>a {
@@ -717,7 +710,7 @@ small {
   }
   
   #experience span.card-title {
-    text-align: left; /* Changed from center to left */
+    text-align: left; /* Keep left-flushed for experience card titles */
     display: block;
   }
   
@@ -731,7 +724,7 @@ small {
   }
   
   #contact a:not(.btn-floating) {
-    text-align: left; /* Changed from center to left */
+    text-align: left; /* Keep left-flushed for contact links */
     display: block;
     left: initial;
     bottom: initial;
@@ -739,9 +732,9 @@ small {
   
   #contact a.btn-floating.btn-large {
     display: block;
-    text-align: left; /* Changed from center to left */
-    margin: 0 auto; /* Keep this if you want button block centered, but text inside button left */
-    margin-left: 32px; /* Override auto for left alignment */
+    text-align: left; /* Keep left-flushed for contact buttons */
+    margin: 0 auto;
+    margin-left: 32px; /* Keep left alignment */
   }
   
   #intro.section {
