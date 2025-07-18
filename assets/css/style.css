@@ -36,36 +36,37 @@
   border: 1px solid #f0f0f0;
 }
 
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
 .social {
   margin: 0 auto;
   width: auto;
   text-align: inherit;
+  /* padding: 10px; */
 }
 
 .icon-btn {
   margin-left: auto;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   border: 0;
+  color: #FFFFFF;
   cursor: pointer;
-  font-size: 20px;
-  line-height: 44px;
-  border-radius: 50%;
+  font-size: 30px;
+  line-height: 70px;
+  border-radius: 45px;
   display: inline-block;
-  margin: 6px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 4px;
 }
 
 .github {
-  background-color: #e8e8e8;
-  color: #5a5a5a;
+  color: black;
 }
 
+
 .linkedin {
-  background-color: #dde7f0;
-  color: #4a90b8;
+  color: #0077b5;
 }
+
 
 .angellist {
   background-color: #f5e8f0;
@@ -109,6 +110,7 @@
 
 .readme:hover {
   background-color: #a897bd;
+  color: white;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(184, 169, 201, 0.4);
 }
@@ -232,6 +234,7 @@ ul.side-nav.fixed a {
   font-weight: 500;
   transition: all 0.3s ease;
   font-family: 'Inter', sans-serif;
+  text-align: center;
 }
 
 ul.side-nav.fixed a:hover {
@@ -251,12 +254,15 @@ ul.side-nav.fixed li.logo {
   box-sizing: content-box;
   min-height: 90px;
   padding: 30px 30px 40px;
+  text-align: center;
 }
 
 ul.side-nav.fixed li.logo a {
   font-weight: 400;
   line-height: 100%;
   color: #5a5a5a;
+  text-align: center;
+  padding: 0;
 }
 
 ul.table-of-contents li:not(.logo) a.active, 
@@ -275,6 +281,7 @@ li.logo span {
   font-size: 13px;
   color: #8a8a8a;
   font-family: 'Caveat', cursive;
+  text-align: center;
 }
 
 .brand-logo h1 {
@@ -283,6 +290,7 @@ li.logo span {
   margin: inherit;
   font-weight: inherit;
   font-family: 'Caveat', cursive;
+  text-align: center;
 }
 
 .container {
@@ -312,7 +320,7 @@ h3 {
 }
 
 #intro.section {
-  background-color: #d6cce0;
+  background-color: #beadc9;
   position: relative;
 }
 
@@ -609,6 +617,7 @@ small {
     line-height: 100%;
     padding: 0;
     width: 100%;
+    text-align: center;
   }
   
   nav {
