@@ -1,19 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&display=swap');
-
 .profile-pic {
   position: relative;
-  max-width: 130px;
-  max-height: 130px;
+  max-width:130px;
+  max-height:130px;
   width: auto;
   height: auto;
   overflow: hidden;
-  margin: -31px; /* Keep vertical margin */
-  margin-left: -7px; /* Reverted to original value for centering */
-  border: 3px solid #f4c2c2; 
+  /* display: inline-block; */
+  
+  
+  /* background-size: cover;  */
+  margin: -31px; 
+  margin-left:-7px;
+  border: 6px solid rgba(0, 77, 64, 0.4); 
   border-radius: 50% !important;
-  box-shadow: 0 4px 16px rgba(244, 194, 194, 0.2);
-  transition: all 0.3s ease;
 }
+
 
 .profile-pic:hover {
   transform: scale(1.02);
