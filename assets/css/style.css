@@ -98,12 +98,16 @@
   display: inline-block;
   margin-top: 1.5em;
   border-radius: 20px;
-  -webkit-border-radius: 5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif
 }
 
 .readme:hover{
-  color: white;
-  background-color: #ffdffd;
+  color: #b8a9c9;
+  background-color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 } 
 
 .contactme {
