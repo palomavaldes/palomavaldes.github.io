@@ -33,6 +33,17 @@
   right: 0;
 }
 
+#intro.section {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* You might need to adjust the height to ensure the centering works. */
+.full-height {
+  height: 100vh;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 .social {
   margin: 0 auto;
