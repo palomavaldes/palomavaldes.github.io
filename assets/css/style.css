@@ -1,4 +1,11 @@
-display: inline-block; */
+.profile-pic {
+  position: relative;
+  max-width:130px;
+  max-height:130px;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  /* display: inline-block; */
   
   
   /* background-size: cover;  */
@@ -335,6 +342,7 @@ ul.side-nav.fixed a {
   font-weight: 500;
   transition: all 0.3s ease;
   font-family: 'Inter', sans-serif;
+  position: relative;
 }
 
 ul.table-of-contents li.logo a.active, ul.table-of-contents li.logo a:hover {
