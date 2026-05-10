@@ -1,1 +1,611 @@
-<h1>Hello!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paloma Valdes</title>
+  <meta name="description" content="Paloma Valdes — engineer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f7f3ee;
+      --cream-dark: #ede7dd;
+      --terracotta: #c4613a;
+      --terracotta-light: #e8826080;
+      --blush: #e8c4b0;
+      --brown: #3d2b1f;
+      --brown-mid: #7a5c4a;
+      --brown-light: #b09080;
+      --footer-bg: #1a1210;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--mono);
+      background: var(--cream);
+      color: var(--brown);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem 1rem;
+      pointer-events: none;
+    }
+
+    nav {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0.6rem 1.75rem;
+      border-radius: 9999px;
+      background: rgba(247,243,238,0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(196,97,58,0.15);
+      box-shadow: 0 1px 4px rgba(61,43,31,0.06);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--brown-mid);
+      transition: color 0.25s;
+    }
+    nav a:hover { color: var(--terracotta); }
+    nav a.active { color: var(--terracotta); }
+
+    .nav-name {
+      color: var(--terracotta) !important;
+      position: relative;
+    }
+    .nav-name::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1.5px;
+      background: var(--terracotta);
+    }
+
+    .nav-divider {
+      width: 1px; height: 10px;
+      background: var(--blush);
+      border-radius: 9999px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 1.5rem 4rem;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, #d4c4b840 1px, transparent 1px),
+        linear-gradient(to bottom, #d4c4b840 1px, transparent 1px);
+      background-size: 3.5rem 3.5rem;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, #000 60%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 45vw; height: 45vw;
+      max-width: 500px; max-height: 500px;
+      background: var(--terracotta);
+      border-radius: 9999px;
+      filter: blur(90px);
+      opacity: 0.08;
+      animation: glow-pulse 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-pulse {
+      from { transform: scale(0.95); opacity: 0.07; }
+      to   { transform: scale(1.05); opacity: 0.12; }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fade-up 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s forwards;
+    }
+
+    @keyframes fade-up {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(196,97,58,0.2);
+      background: rgba(247,243,238,0.8);
+      backdrop-filter: blur(8px);
+      font-size: 10px;
+      color: var(--brown-mid);
+      letter-spacing: 0.05em;
+      margin-bottom: 2.25rem;
+      box-shadow: 0 1px 3px rgba(61,43,31,0.05);
+    }
+
+    .pulse-dot {
+      width: 7px; height: 7px;
+      border-radius: 9999px;
+      background: var(--terracotta);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      line-height: 1.08;
+      color: var(--brown);
+      letter-spacing: -0.01em;
+      max-width: 900px;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--terracotta);
+      position: relative;
+    }
+
+    h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 0;
+      height: 0.12em;
+      width: 100%;
+      background: rgba(196,97,58,0.18);
+    }
+
+    .hero-sub {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-top: 0.5rem;
+    }
+
+    /* ── SECTIONS ── */
+    main { flex-grow: 1; }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--blush);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: var(--brown);
+    }
+
+    .about-text p {
+      font-size: 12px;
+      line-height: 1.9;
+      color: var(--brown-mid);
+      margin-bottom: 1rem;
+    }
+
+    .about-details { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .detail-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .detail-row:last-child { border-bottom: none; }
+
+    .detail-label {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+    }
+
+    .detail-value {
+      font-size: 12px;
+      color: var(--brown);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .project-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--cream-dark);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--brown-light);
+      background: linear-gradient(135deg, var(--cream-dark) 0%, var(--blush) 100%);
+      transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    .project-card:hover .project-img-placeholder {
+      transform: scale(1.04);
+    }
+
+    .project-info { display: flex; flex-direction: column; gap: 0.3rem; }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--brown);
+      transition: color 0.25s;
+    }
+    .project-card:hover .project-title { color: var(--terracotta); }
+
+    .project-date {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 0.2rem;
+    }
+
+    .project-desc {
+      font-size: 11.5px;
+      line-height: 1.7;
+      color: var(--brown-mid);
+      font-family: var(--mono);
+    }
+
+    /* ── RESUME ── */
+    .resume-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .resume-cta h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--brown);
+      line-height: 1.2;
+      max-width: 500px;
+    }
+
+    .resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      background: var(--terracotta);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .resume-btn:hover {
+      background: var(--brown);
+      transform: translateY(-1px);
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .skill-tag {
+      padding: 0.3rem 0.8rem;
+      border-radius: 9999px;
+      border: 1px solid var(--blush);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--brown-mid);
+      background: rgba(232,196,176,0.15);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer-bg);
+      color: #a89080;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      footer { flex-direction: row; justify-content: space-between; align-items: flex-end; padding: 3.5rem; }
+    }
+
+    .footer-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #f0e6dc;
+      text-transform: none;
+      letter-spacing: 0;
+      line-height: 1.4;
+      max-width: 360px;
+    }
+
+    .footer-links { display: flex; gap: 3rem; }
+
+    .footer-col { display: flex; flex-direction: column; gap: 0.9rem; }
+
+    .footer-col-label { color: #5a4035; margin-bottom: 0.25rem; }
+
+    footer a {
+      color: #a89080;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .footer-links { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <nav>
+      <a href="#hero" class="nav-name">Paloma Valdes</a>
+      <div class="nav-divider"></div>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" style="padding-top:0; max-width:100%; margin:0;">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div class="status-badge">
+        <span class="pulse-dot"></span>
+        <span>~ open to opportunities</span>
+      </div>
+      <h1>hi, i'm paloma,<br>a <em>creative</em> engineer.</h1>
+      <p class="hero-sub">building things that matter</p>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">About</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Engineer with an eye for craft.</h2>
+          <p>I'm Paloma — a software engineer who cares deeply about the intersection of technology and design. I build things that are functional, thoughtful, and a little bit beautiful.</p>
+          <p>When I'm not writing code, you'll find me exploring new ideas, reading, or making something with my hands.</p>
+        </div>
+        <div class="about-details">
+          <div class="detail-row">
+            <span class="detail-label">Based in</span>
+            <span class="detail-value">Your City, State</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Currently</span>
+            <span class="detail-value">Your current role or school</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Studying / Focus</span>
+            <span class="detail-value">Your major or specialty</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Interests</span>
+            <span class="detail-value">Your interests here</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Projects</div>
+      <div class="projects-grid">
+        <a href="#" class="project-card">
+          <div class="project-img">
+            <div class="project-img-placeholder">Project One</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Project One</h3>
+            <span class="project-date">2024 – Present</span>
+            <p class="project-desc">A short description of what this project does and why it's interesting.</p>
+          </div>
+        </a>
+        <a href="#" class="project-card">
+          <div class="project-img">
+            <div class="project-img-placeholder">Project Two</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Project Two</h3>
+            <span class="project-date">2024</span>
+            <p class="project-desc">A short description of what this project does and why it's interesting.</p>
+          </div>
+        </a>
+        <a href="#" class="project-card">
+          <div class="project-img">
+            <div class="project-img-placeholder">Project Three</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Project Three</h3>
+            <span class="project-date">2023</span>
+            <p class="project-desc">A short description of what this project does and why it's interesting.</p>
+          </div>
+        </a>
+        <a href="#" class="project-card">
+          <div class="project-img">
+            <div class="project-img-placeholder">Project Four</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Project Four</h3>
+            <span class="project-date">2023</span>
+            <p class="project-desc">A short description of what this project does and why it's interesting.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume">
+      <div class="section-label">Resume</div>
+      <div class="resume-cta">
+        <h2>Let's look at what I've been up to.</h2>
+        <a href="/resume.pdf" target="_blank" class="resume-btn">
+          ↓ Download Resume
+        </a>
+        <div>
+          <div class="detail-label" style="margin-bottom:0.75rem;">Skills & Tools</div>
+          <div class="skills-list">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Your skill</span>
+            <span class="skill-tag">Your skill</span>
+            <span class="skill-tag">Your skill</span>
+            <span class="skill-tag">Your skill</span>
+            <span class="skill-tag">Your skill</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <p class="footer-quote">The details are not the details.<br>They make the design.</p>
+    <div class="footer-links">
+      <div class="footer-col">
+        <span class="footer-col-label">Say Hi</span>
+        <a href="mailto:your@email.com">Email</a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+        <a href="https://github.com/palomavaldes" target="_blank">GitHub</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-label">Page</span>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
