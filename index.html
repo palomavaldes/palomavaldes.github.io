@@ -9,6 +9,79 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
+<!-- PIXEL TRAIL CURSOR -->
+<canvas id="pixelTrail" style="position:fixed; inset:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
+
+<script>
+  (function () {
+    // skip on touch devices and for people who prefer less motion
+    if (!matchMedia("(pointer: fine)").matches) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const PIXEL = 12;   // size of each pixel square (px)
+    const LIFE = 600;   // how long each pixel lasts (ms)
+    const OPACITY = 0.8;
+
+    const canvas = document.getElementById("pixelTrail");
+    const ctx = canvas.getContext("2d");
+    const cells = new Map();
+    let last = null;
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = innerWidth * dpr;
+      canvas.height = innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    addEventListener("resize", resize);
+
+    function trailColor() {
+      const s = getComputedStyle(document.documentElement);
+      return (s.getPropertyValue("--accent") || s.getPropertyValue("--terracotta")).trim() || "#8aaa7d";
+    }
+
+    function addCell(x, y) {
+      const cx = Math.floor(x / PIXEL);
+      const cy = Math.floor(y / PIXEL);
+      cells.set(cx + "," + cy, { cx, cy, born: performance.now() });
+    }
+
+    addEventListener("mousemove", (e) => {
+      const x = e.clientX, y = e.clientY;
+      if (last) {
+        // fill in the gaps so fast movements still leave a solid trail
+        const dx = x - last.x, dy = y - last.y;
+        const steps = Math.max(1, Math.ceil(Math.hypot(dx, dy) / (PIXEL / 2)));
+        for (let i = 1; i <= steps; i++) addCell(last.x + (dx * i) / steps, last.y + (dy * i) / steps);
+      } else {
+        addCell(x, y);
+      }
+      last = { x, y };
+    });
+    document.addEventListener("mouseleave", () => (last = null));
+
+    function frame(now) {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      if (cells.size) {
+        ctx.fillStyle = trailColor();
+        for (const [key, c] of cells) {
+          const age = (now - c.born) / LIFE;
+          if (age >= 1) { cells.delete(key); continue; }
+          const size = PIXEL * (1 - age * 0.6);          // shrink as it fades
+          const offset = (PIXEL - size) / 2;
+          ctx.globalAlpha = (1 - age) * OPACITY;
+          ctx.fillRect(c.cx * PIXEL + offset, c.cy * PIXEL + offset, size, size);
+        }
+        ctx.globalAlpha = 1;
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+</script>
+
 <body>
 
   <!-- NAV -->
@@ -17,6 +90,8 @@
     <nav class="nav-links">
       <a href="about.html">About</a>
       <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
       <a href="Paloma Valdes Resume SWE.pdf">Resume</a>
       <a href="https://github.com/palomavaldes">@palomavaldes</a>
     </nav>
@@ -28,7 +103,7 @@
     <section id="hero" class="hero">
       <p class="eyebrow">it-infra &amp; support intern @ gcm grosvenor</p>
       <h1>hi, i'm paloma,<br />a <em>CAM &amp; computer science</em> student.</h1>
-      <p class="lead">Carpe diem.</p>
+      <p class="lead">always learning, usually snacking</p>
       <div class="pill-row">
         <a class="pill" href="mailto:pvaldes@nd.edu">Email</a>
         <a class="pill" href="https://www.linkedin.com/in/paloma-valdes">LinkedIn</a>
@@ -87,7 +162,7 @@
         <!-- EDUCATION -->
     <section id="education" class="section">
       <h2>Education</h2>
-      <p class="muted">Dual-degree student · Lilly Endowed Scholar</p>
+      <p class="muted">Dual-degree student · Lilly Endowment Scholar</p>
 
       <div class="group">
         <ul class="role-list">
@@ -114,7 +189,7 @@
     <!-- EXPERIENCE -->
     <section id="experience" class="section">
       <h2>Experience</h2>
-      <p class="muted">Where I've worked and what I built there.</p>
+      <p class="muted">Where I've worked and what I built/accomplished there.</p>
 
       <div class="group">
         <details class="faq">
@@ -188,38 +263,9 @@
 
     <hr />
 
-    <!-- FAQ-style accordion -->
-    <section class="section">
-      <h3 class="faq-title">Frequently Asked Questions</h3>
+    
 
-      <details class="faq">
-        <summary><span class="num">01</span><span class="q">What am I studying?</span><span class="toggle"></span></summary>
-        <div class="answer">
-          <p>Replace this with a few sentences about your CAM &amp; CS program at Notre Dame.</p>
-        </div>
-      </details>
-
-      <details class="faq">
-        <summary><span class="num">02</span><span class="q">What am I working on right now?</span><span class="toggle"></span></summary>
-        <div class="answer">
-          <ul>
-            <li><strong>IT infra &amp; support at GCM Grosvenor.</strong> Add a line about what you do there.</li>
-            <li><strong>Side projects.</strong> Add what you're building next.</li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="faq">
-        <summary><span class="num">03</span><span class="q">What kind of roles am I looking for?</span><span class="toggle"></span></summary>
-        <div class="answer">
-          <p>SWE / ML internships, or whatever fits. Edit me.</p>
-        </div>
-      </details>
-    </section>
-
-    <hr />
-
-    <p class="closing">This site is probably not perfect, so please reach out if you want to chat!</p>
+    <p class="closing">There is plenty more to learn about me, so please reach out if you want to chat!</p>
     <p class="closing">Say hi: <a href="mailto:pvaldes@nd.edu">pvaldes@nd.edu</a></p>
   </main>
 
